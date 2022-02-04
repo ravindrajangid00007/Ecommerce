@@ -1,0 +1,6 @@
+.bw > svg {
+  background-color: white;
+  padding: 8vmax 3vmax;
+  color: black;
+  border-radius: 0 10px 10px 0;
+}

@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+/* chrome , Safari, Edge , Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* firefox */
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: white; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: rgba(255, 99, 71, 0.603); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255, 99, 71); 
+
+  }

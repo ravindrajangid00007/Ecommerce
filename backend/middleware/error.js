@@ -8,6 +8,7 @@ module.exports = (err , req , res , next) => {
          const message =   `Resource not found. invalid : ${err.path}`;
          err = new ErrorHandler(message , 400);
      }
+     console.log(err);
     res.status(err.statusCode).json({
         success: false,
         message: err.message,

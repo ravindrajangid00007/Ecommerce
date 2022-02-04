@@ -1,0 +1,55 @@
+.footer {
+    margin-top: 10vmax;
+    padding: 2vmax;
+    background-color: rgb(10, 10, 209);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.leftFooter {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.leftFooter h4{
+    font-family: "Roboto";
+}
+
+.midFooter {
+    width: 60%;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+}
+
+.midFooter h3 {
+    font-size: 5vmax;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+    color: #fff;
+}
+
+.rightFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+}
+
+.rightFooter h3 {
+    font-size: 1.5em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana';
+}
+
+.rightFooter a {
+    font-size: 0.8rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    transition: all 0.5s;
+}
+
+.rightFooter a:hover {
+    color: red;
+}

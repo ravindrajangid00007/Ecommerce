@@ -11,7 +11,7 @@ class ApiFeatures {
                 $options : "i",
             }
         } : {};
-        this.query = this.query.find({...keyword});
+        this.query = this.query.find({...keyword}).clone();
         return this;
     }
 
@@ -26,14 +26,14 @@ class ApiFeatures {
         let queryCopyString = JSON.stringify(queryCopy);
         queryCopyString = queryCopyString.replace(/\b(gt|gte|lt|lte)\b/g,(key)=>`$${key}`);
         console.log(JSON.parse(queryCopyString));
-        this.query = this.query.find(JSON.parse(queryCopyString));
+        this.query = this.query.find(JSON.parse(queryCopyString)).clone();
         return this;
     }
 
     pagination(resultPerPage){
         const currentPage = Number(this.queryString.page) || 1; 
-        const skip = resultPerPage*(currentPage - 1) + 1;
-        this.query = this.query.limit(resultPerPage).skip(skip); 
+        const skip = resultPerPage*(currentPage - 1);
+        this.query = this.query.limit(resultPerPage).skip(skip).clone(); 
         return this;
     }
 }
