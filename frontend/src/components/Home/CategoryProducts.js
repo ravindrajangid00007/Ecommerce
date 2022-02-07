@@ -10,6 +10,7 @@ import './CategoryProducts.css';
 const CategoryProducts = (props) => {
     const breakpoints = [
         {width: 1 , itemsToShow: 2},
+        {width: 350 , itemsToShow: 3},
         {width: 550 , itemsToShow:4},
         {width:800 , itemsToShow: 6},
         {width: 1200 , itemsToShow: 7},
@@ -23,7 +24,7 @@ const CategoryProducts = (props) => {
                         object.products.length > 0 &&
                         <div key={i} className="category-wise-product-container" title={`section-${object.category}`} id={object.category}>
                             <h2>{object.category}</h2>
-                            <ElasticCarousel breakPoints={breakpoints}>
+                            <ElasticCarousel breakPoints={breakpoints} pagination={false}>
                                 {
                                     object.products.map((product, i) => (
                                         <ProductCard key={i} product={product} />

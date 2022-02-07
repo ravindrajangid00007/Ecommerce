@@ -3,6 +3,7 @@
     padding: 3vmax 2vmax;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .sidebar > a:fixed-child {
@@ -41,4 +42,11 @@
 
 .MuiTypography-root {
     background-color: white !important;
+}
+
+@media screen and (max-width: 600px){
+    .sidebar > a >img {
+        width: 30%;
+    }
+
 }

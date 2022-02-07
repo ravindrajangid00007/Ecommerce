@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv');
 const path = require('path');
+if(process.env.NODE_ENV !== 'PRODUCTION'){
+    require('dotenv').config({path: path.join(__dirname, 'config/config.env')});
+}
 const errorMiddleware = require('./middleware/error');
-dotenv.config({path: path.join(__dirname, 'config/config.env')});
 const db = require('./config/database');
 const passport = require('passport');
 const passportJwtCookieCombo = require('./config/passport_jwt_cookiecombo');
@@ -15,6 +16,7 @@ const fileUpload = require('express-fileupload');
 // const MongoStore = require('connect-mongo');
 // const passportStrategy = require('./config/passport_jwt_strategy');
 const cookieParser = require('cookie-parser');
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME ,
@@ -45,8 +47,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(passport.initialize());
 // app.use(passport.session());
-
+app.use(express.static(path.join(__dirname,"../frontend/build")));
 app.use('/api/v1' , require('./routes'))
+app.get("*" , (req, res) =>{
+    res.sendFile(path.resolve(__dirname , "../frontend/build/index.html"));
+})
+
 // middleware for error handling
 app.use(errorMiddleware);
 app.listen(process.env.PORT , ()=>{

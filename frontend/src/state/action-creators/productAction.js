@@ -45,7 +45,7 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 25000], ca
         } catch (error) {
             dispatch({
                 type: ALL_PRODUCT_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -66,7 +66,7 @@ export const getAdminProducts = () => {
         } catch (error) {
             dispatch({
                 type: ADMIN_PRODUCT_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -87,7 +87,7 @@ export const getProductDetails = (id) => {
         } catch (error) {
             dispatch({
                 type: PRODUCT_DETAILS_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -109,7 +109,7 @@ export const deleteProduct = (id) => {
         } catch (error) {
             dispatch({
                 type: DELETE_PRODUCT_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -133,7 +133,7 @@ export const createProduct = (productData) => {
         } catch (error) {
             dispatch({
                 type: NEW_PRODUCT_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -158,7 +158,7 @@ export const updateProduct = (id , productData) => {
         } catch (error) {
             dispatch({
                 type: UPDATE_PRODUCT_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -182,7 +182,7 @@ export const newReview = (reviewData) => {
         } catch (error) {
             dispatch({
                 type: NEW_REVIEW_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }

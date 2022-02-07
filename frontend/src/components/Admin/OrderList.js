@@ -123,7 +123,7 @@ const ProductList = () => {
 
             <div className="dashboardPage">
                 <SideBar />
-                <div className="productListContainer">
+                <div className="dashboardContainer">
                     <h1 id="productListHeading">ALL ORDERS</h1>
 
                     <DataGrid

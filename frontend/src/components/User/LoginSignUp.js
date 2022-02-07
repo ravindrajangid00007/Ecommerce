@@ -17,7 +17,7 @@ function LoginSignUp() {
     const navigate = useNavigate();
     const location = useLocation();
     const { error, isAuthenticated, loading } = useSelector((state) => state.userReducer);
-    let redirect = location.search ? location.search.split("=")[1] : "account";
+    let redirect = location.search ? location.search.split("=")[1] : "";
     useEffect(() => {
       if(error){
           alert.error(error);

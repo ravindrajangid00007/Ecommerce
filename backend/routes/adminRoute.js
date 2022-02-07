@@ -12,7 +12,7 @@ router.get(
 );
 router.get(
   "/all-products",
-  passport.authenticate("jwt-cookiecombo", { session: false }),
+  // passport.authenticate("jwt-cookiecombo", { session: false }),
   adminController.getAllAdminProducts
 );
 

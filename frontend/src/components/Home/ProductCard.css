@@ -1,6 +1,6 @@
 .productCardImage {
-    min-width: 10vmax;
-    min-height: 17vmax;
+    width: 13vmax;
+    height: 17vmax;
 }
 
 .productCard {

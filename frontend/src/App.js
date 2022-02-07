@@ -38,13 +38,15 @@ import UpdateOrder from "./components/Admin/UpdateOrder.js";
 import UserList from "./components/Admin/UserList.js";
 import UpdateUser from "./components/Admin/UpdateUser.js";
 // import {ReactNavbar} from "overlay-navbar"
-
+import SearchBar from './components/layouts/Header/SearchBar';
+import NotFound from './components/layouts/NotFound/NotFound.js';
+import ProtectedRoute from './components/Route/ProtectedRoute.js';
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.userReducer);
   const [stripeApiKey, setStripeApiKey] = useState("");
-  
+
   const getStripeApiKey = async () => {
-    const { data } =await axios.get("/api/v1/payment/stripeapikey");
+    const { data } = await axios.get("/api/v1/payment/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
   }
   React.useEffect(() => {
@@ -63,16 +65,36 @@ function App() {
         <Route path="/product/details/:id" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
-        <Route path="/search" element={<Search />} />
         <Route path="/login" element={<LoginSignUp />} />
-        {isAuthenticated && <Route path="/account" element={<Profile />} />}
-        {isAuthenticated && <Route path="/me/update" element={<UpdateProfile />} />}
-        {isAuthenticated && <Route path="/update-password" element={<UpdatePassword />} />}
-        <Route path="/forgot-password" element={< ForgotPassword />} />
-        <Route path="/reset-password/:token" element={< ResetPassword />} />
+
+
+        <Route path="/account" element={<ProtectedRoute />}>
+          <Route path="/account" element={<Profile />} />
+        </Route>
+
+        <Route path="/me/update" element={<ProtectedRoute />} >
+          <Route path="/me/update" element={<UpdateProfile />} />
+        </Route>
+
+        <Route path="/update-password" element={<ProtectedRoute />} >
+          <Route path="/update-password" element={< UpdatePassword />} />
+        </Route>
+        <Route path="/forgot-password" element={<ProtectedRoute />} >
+          <Route path="/forgot-password" element={< ForgotPassword />} />
+        </Route>
+        <Route path="/reset-password/:token" element={<ProtectedRoute />} >
+          <Route path="/reset-password/:token" element={< ResetPassword />} />
+        </Route>
+
         <Route path="/cart" element={< Cart />} />
-        {isAuthenticated && <Route path="/shipping" element={< Shipping />} />}
-        {isAuthenticated && <Route path="/confirm-order" element={< ConfirmOrder />} />}
+
+        <Route path="/shipping" element={<ProtectedRoute />} >
+          <Route path="/shipping" element={< Shipping />} />
+        </Route>
+        <Route path="/confirm-order" element={<ProtectedRoute />} >
+          <Route path="/confirm-order" element={< ConfirmOrder />} />
+        </Route>
+
 
         {stripeApiKey && (
           <Route path="/process-payment"
@@ -83,17 +105,44 @@ function App() {
             }
           />
         )}
-        <Route path="/success" element={<OrderSuccess />} />
-        <Route path="/my-all-orders" element={<MyOrders />} />
-        <Route path="/order/:id" element={<OrderDetails />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin/products" element={<ProductList />} />
-        <Route path="/admin/product" element={<NewProduct />} />
-        <Route path="/admin/product/:id" element={<UpdateProduct />} />
-        <Route path="/admin/order/:id" element={<UpdateOrder />} />
-        <Route path="/admin/orders" element={<OrderList />} />
-        <Route path="/admin/users" element={<UserList />} />
-        <Route path="/admin/user/:id" element={<UpdateUser />} />
+
+
+        <Route path="/success" element={<ProtectedRoute />} >
+          <Route path="/success" element={<OrderSuccess />} />
+        </Route>
+        <Route path="/my-all-orders" element={<ProtectedRoute />} >
+          <Route path="/my-all-orders" element={<MyOrders />} />
+        </Route>
+        <Route path="/order/:id" element={<ProtectedRoute />} >
+          <Route path="/order/:id" element={<OrderDetails />} />
+        </Route>
+        <Route path="/dashboard" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+
+        <Route path="/admin/products" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/products" element={<ProductList />} />
+        </Route>
+
+        <Route path="/admin/product" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/product" element={<NewProduct />} />
+        </Route>
+        <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/product/:id" element={<UpdateProduct />} />
+        </Route>
+        <Route path="/admin/order/:id" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/order/:id" element={<UpdateOrder />} />
+        </Route>
+        <Route path="/admin/orders" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/orders" element={<OrderList />} />
+        </Route>
+        <Route path="/admin/users" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/users" element={<UserList />} />
+        </Route>
+        <Route path="/admin/user/:id" element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>

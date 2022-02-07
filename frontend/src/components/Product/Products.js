@@ -70,15 +70,7 @@ function Products(props) {
       ) : (
         <>
           <div className="productsPage">
-            <div className="productsBlock">
-              <h2 className="productsHeading">Products</h2>
-              <div className="productsList">
-                {products &&
-                  products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
-              </div>
-            </div>
+
             <div className="filterbox">
               <Typography>Price</Typography>
               <Slider
@@ -117,23 +109,34 @@ function Products(props) {
                 max={5}
               />
             </div>
+            <div className="productsBlock">
+              <h2 className="productsHeading">Products</h2>
+              <div className="productsList">
+                {products &&
+                  products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+              </div>
+              {resultPerPage <= filteredProductsCount && (<div className="paginationBox">
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={productsCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText="Next"
+                  prevPageText="Prev"
+                  firstPageText="FirstPage"
+                  lastPageText="Last"
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activeClass="pageItemActive"
+                  activeLinkClass="pageLinkActive"
+                />
+              </div>)}
+            </div>
+
           </div>
-          {resultPerPage <= filteredProductsCount && (<div className="paginationBox">
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={resultPerPage}
-              totalItemsCount={productsCount}
-              onChange={setCurrentPageNo}
-              nextPageText="Next"
-              prevPageText="Prev"
-              firstPageText="FirstPage"
-              lastPageText="Last"
-              itemClass="page-item"
-              linkClass="page-link"
-              activeClass="pageItemActive"
-              activeLinkClass="pageLinkActive"
-            />
-          </div>)}
+
         </>
       )}
     </>

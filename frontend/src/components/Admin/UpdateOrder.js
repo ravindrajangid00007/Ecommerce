@@ -59,7 +59,7 @@ const ProcessOrder = () => {
             <MetaData title="Process Order" />
             <div className="dashboardPage">
                 <SideBar />
-                <div className="newProductContainer">
+                <div className="dashboardContainer">
                     {loading ? (
                         <Loader />
                     ) : (

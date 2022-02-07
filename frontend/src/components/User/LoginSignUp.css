@@ -10,7 +10,7 @@
 
 .loginSignUpBox {
   background-color: white;
-  width: 25vw;
+  width: 40vmax;
   height: 70vh;
   box-sizing: border-box;
   overflow: hidden;
@@ -47,9 +47,10 @@
   justify-content: space-evenly;
   align-items: center;
   margin: auto;
-  padding: 2vmax;
+  padding: 2vmax 10vmax;
   height: 70%;
   transition: all 0.5s;
+  
 }
 .signUpForm {
   transform: translateY(-100%) translateX(-100vmax);
@@ -59,6 +60,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
 }
 
 .loginForm > div > input,

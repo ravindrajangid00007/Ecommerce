@@ -64,9 +64,10 @@ export const loginUser = (email, password) => {
                 payload: data,
             });
         } catch (error) {
+            console.log("error us available",error);
             dispatch({
                 type: LOGIN_FAIL,
-                payload: JSON.stringify(error)
+                payload: JSON.stringify(error.message),
             });
         }
     }
@@ -83,7 +84,7 @@ export const logoutUser = () => {
         } catch (error) {
             dispatch({
                 type: LOGOUT_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -106,7 +107,7 @@ export const loadUser = () => {
         } catch (error) {
             dispatch({
                 type: LOAD_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -132,7 +133,7 @@ export const registerUser = (userData) => {
         } catch (error) {
             dispatch({
                 type: REGISTER_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message,
             });
         }
     }
@@ -158,7 +159,7 @@ export const updateProfile = (userData) => {
         } catch (error) {
             dispatch({
                 type: UPDATE_PROFILE_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -182,7 +183,7 @@ export const updatePassword = (passwords) => {
         } catch (error) {
             dispatch({
                 type: UPDATE_PASSWORD_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -208,7 +209,7 @@ export const forgotPassword = (email) => {
         } catch (error) {
             dispatch({
                 type: FORGOT_PASSWORD_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -230,7 +231,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: RESET_PASSWORD_FAIL,
-            payload: JSON.stringify(error)
+            payload: error.response.data.message
         });
     }
 };
@@ -251,7 +252,7 @@ export const allUsers = () => {
         } catch (error) {
             dispatch({
                 type: ALL_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -275,7 +276,7 @@ export const userDetails = (id) => {
         } catch (error) {
             dispatch({
                 type: USER_DETAILS_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -299,7 +300,7 @@ export const updateUser = (id , userData) => {
         } catch (error) {
             dispatch({
                 type: UPDATE_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -321,7 +322,7 @@ export const deleteUser = (id) => {
         } catch (error) {
             dispatch({
                 type: DELETE_USER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }

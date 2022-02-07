@@ -60,7 +60,7 @@ export const myOrders = () => {
             
             dispatch({ type: MY_ORDER_SUCCESS, payload: data.orders});
         } catch (error) {
-            dispatch({ type: MY_ORDER_FAIL, payload: JSON.stringify(error)});
+            dispatch({ type: MY_ORDER_FAIL, payload: error.response.data.message});
         }
     }
 }
@@ -76,7 +76,7 @@ export const orderDetails = (id) => {
             
             dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order});
         } catch (error) {
-            dispatch({ type: ORDER_DETAILS_FAIL, payload: JSON.stringify(error)});
+            dispatch({ type: ORDER_DETAILS_FAIL, payload: error.response.data.message});
         }
     }
 }
@@ -96,7 +96,7 @@ export const getAllOrders = () => {
         } catch (error) {
             dispatch({
                 type: ALL_ORDER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -117,7 +117,7 @@ export const deleteOrder = (id) => {
         } catch (error) {
             dispatch({
                 type: DELETE_ORDER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }
@@ -141,7 +141,7 @@ export const updateOrder = (id , orderData) => {
         } catch (error) {
             dispatch({
                 type: UPDATE_ORDER_FAIL,
-                payload: JSON.stringify(error)
+                payload: error.response.data.message
             });
         }
     }

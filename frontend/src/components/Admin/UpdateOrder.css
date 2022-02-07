@@ -3,6 +3,13 @@
     padding: 3vmax;
     background-color: white;
   }
+  .confirmOrderPage {
+    height: 100%;
+  }
+  .confirmOrderPage > div {
+    height: 100%;
+    overflow: auto;
+  }
   
   .updateOrderForm > div {
     display: flex;

@@ -5,8 +5,9 @@
     border-left: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     padding: 0 2vmax;
+    overflow: auto;
   }
   
   #productListHeading {
@@ -22,7 +23,9 @@
   .productListTable {
     background-color: white;
     border: none !important;
+    width: 100%;
   }
+
   
   .productListTable div {
     font: 300 1vmax "Roboto";

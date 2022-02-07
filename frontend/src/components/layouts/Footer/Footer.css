@@ -1,55 +1,73 @@
-.footer {
-    margin-top: 10vmax;
-    padding: 2vmax;
-    background-color: rgb(10, 10, 209);
-    color: white;
-    display: flex;
-    align-items: center;
+.footerContainer {
+  display: grid;
+  /* grid-auto-columns: auto; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  background-color: rgba(128, 128, 128, 0.192);
+  padding: 3vmax;
 }
 
 .leftFooter {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: center;
 }
 
-.leftFooter h4{
-    font-family: "Roboto";
+.leftFooter h4 {
+  font-family: "Roboto";
 }
 
 .midFooter {
-    width: 60%;
-    text-align: center;
-    display: flex;
-    flex-direction: column; 
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.midFooter h3 {
-    font-size: 5vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
-    color: #fff;
+.midFooter > img {
+  width: 20vmax;
 }
-
 .rightFooter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", "Arial", "sans-serif";
 }
 
 .rightFooter h3 {
-    font-size: 1.5em;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana';
+  font-size: 1.5em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", "Geneva", "Verdana";
 }
 
 .rightFooter a {
-    font-size: 0.8rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: white;
-    transition: all 0.5s;
+  font-size: 0.8rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+  transition: all 0.5s;
 }
 
 .rightFooter a:hover {
-    color: red;
+  color: red;
+}
+
+.footer-copy-right > p {
+  font: 200 3vmax "Roboto";
+  text-align: center;
+  box-sizing: border-box;
+  padding: 35px 0;
+  border-top: 1px solid black;
+}
+
+@media screen and (max-width: 800px) {
+  .footerContainer {
+    /* grid-auto-columns: auto; */
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 }

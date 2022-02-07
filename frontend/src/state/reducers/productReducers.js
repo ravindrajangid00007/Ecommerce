@@ -11,7 +11,8 @@ import {
     NEW_REVIEW_FAIL,
     NEW_REVIEW_SUCCESS,
     NEW_REVIEW_REQUEST,
-
+    NEW_REVIEW_RESET,
+    
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
@@ -37,7 +38,7 @@ import {
 export const productReducer = (state = { products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:
-        case ADMIN_PRODUCT_REQUEST:
+        case ADMIN_PRODUCT_REQUEST: 
             return {
                 loading: true,
                 products: [],
@@ -90,7 +91,7 @@ export const newProductReducer = (state = { }, action) => {
                 error: action.payload,
                 success: false,
             };
-        case NEW_PRODUCT_RESET:
+        case NEW_REVIEW_RESET:
             return {
                 ...state,
                 success: false,
@@ -225,6 +226,11 @@ export const newReviewReducer = (state = { review: {} }, action) => {
                 error: action.payload,
                 success: false,
             };
+        case NEW_PRODUCT_RESET:
+            return {
+                ...state,
+                success: false,
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,

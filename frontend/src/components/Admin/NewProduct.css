@@ -22,7 +22,6 @@
   margin: auto;
   padding: 3vmax;
   justify-content: space-evenly;
-  min-height: 70%;
   width: 30vmax;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
@@ -33,6 +32,7 @@
   width: 100%;
   align-items: center;
   margin: 0.5vmax 0;
+  position: relative;
 }
 
 .createProductForm > div > input,

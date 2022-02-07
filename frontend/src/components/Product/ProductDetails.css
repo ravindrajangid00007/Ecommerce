@@ -2,51 +2,51 @@
 .productDetails {
   display: grid;
   grid-template-rows: 1fr auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
-  width: 100vw;
-  max-width: 100%;
+  width: 100%;
   padding: 6vmax;
   box-sizing: border-box;
 }
+
+.carrousel-product-container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr;
+  height: 70vh;
+
+}
 .carouselBox {
-  /* width: 100%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  padding: 2vmax;
-  box-sizing: border-box; */
-  width: 100%;
+  justify-content: center;
+  height: 70vh;
+}
+.carouselImage {
+  height: 22vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.329);
+} 
+
+.carouselImage > img {
   height: 100%;
-  grid-row-start: 1;
-  grid-column-start: 1;
-  grid-row-end: 2;
-  grid-column-end: 2;
+  width: 100%;
 }
 
-.carouselImage {
-  max-height: 100%;
-  max-width: 100%;
-}
+
 .productDetailBox {
-  grid-row-start: 1;
-  grid-column-start: 2;
-  grid-row-end: 2;
-  grid-column-end: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
   padding: 0 2vmax;
+  height: 70vh;
+
 }
 
 .reviewBox {
-  grid-row-start: 2;
-  grid-column-start: 1;
-  grid-row-end: 3;
-  grid-column-end: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -247,34 +247,69 @@
   display: flex;
   overflow: auto;
 }
-@media screen and (max-width: 600px) {
-  .productDetails {
-    grid-template-rows: 1fr 1fr auto;
+
+
+@media screen and (max-width: 700px) {
+  .carrousel-product-container {
     grid-template-columns: 1fr;
-    gap: 0px;
-    margin: 10vmax 0;
+    grid-template-rows: 1fr auto;
+    height: auto;
   }
-  .carouselBox {
-    grid-row-start: 1;
-    grid-column-start: 1;
-    grid-row-end: 2;
-    grid-column-end: 2;
+  .productDetails {
+    padding: 0;
   }
   .productDetailBox {
-    grid-row-start: 2;
-    grid-column-start: 1;
-    grid-row-end: 3;
-    grid-column-end: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    padding: 0 2vmax;
+    height: 50vh;
   }
-  .reviewBox {
-    grid-row-start: 3;
-    grid-column-start: 1;
-    grid-row-end: 4;
-    grid-column-end: 2;
+  .carouselBox {
+    height: 30vh;
   }
+  .detailsBlock-1 h2 {
+    font: 600 4.6vmax "Roboto";
+  }
+  .detailsBlock-1 p {
+    font: 200 2.6vmax "cursive";
+  }
+  .detailsBlock-2 > span {
+    font: 200 2.6vmax cursive;
+  }
+  .detailsBlock-3 > h1 {
+    font-size: 3.8vmax ;
+  }
+  .detailsBlock-3-1-1 > button {
+    font-size: 3.5vmax;
+  }
+  .detailsBlock-3-1-1 > input {
+    font: 400 3.5vmax "Roboto";
+  }
+  .detailsBlock-3 > p {
+    font: 400 3vmax "Roboto";
+  }
+  .detailsBlock-4 {
+    font: 500 3.2vmax "sans-serif";
+  }
+  .detailsBlock-4 > p {
+    font: 500 2.2vmax "sans-serif";
+  }
+  .detailsBlock-3-1 > button:last-child {
+    font: 500 1.7vmax "Roboto";
+    padding: 0.5vmax 3vmax;
+    margin: 1vmax 3vmax;
+  }
+  .submitReview {
+    font: 500 2.5vmax "Roboto";
+  }
+  .submitDialogTextArea {
+    font: 300 3vmax "Roboto";
+  }
+  .reviewHeading {
+    font: 600 4vmax "Roboto";
+  }
+  .reviewCard > p {
+    font: 600 2vmax "Roboto";
+  }
+  .reviewCard > span {
+    font: 300 2vmax cursive;
+  }
+
 }

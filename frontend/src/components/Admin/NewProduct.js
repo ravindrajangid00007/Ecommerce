@@ -88,7 +88,7 @@ const NewProduct = () => {
     return <>
         <div className="dashboardPage">
             <Sidebar />
-            <div className="newProductContainer">
+            <div className="dashboardContainer">
                 <Typography component="h1">Create Product</Typography>
 
                 <form

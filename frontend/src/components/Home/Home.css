@@ -73,6 +73,13 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0;
+    padding-left: 0;
+    width: 100%;
+    overflow: auto;
+}
+
+.category-list > ul::-webkit-scrollbar {
+    display: none;
 }
 .category-list > ul > li {
     list-style: none;
@@ -123,13 +130,18 @@
     z-index: 10;
 } */
 
-.rec-pagination {
-    display: none !important;
-}
+
 .makeStyles-prev-15 > button {
     border-radius: 0 20px 20px 0 !important;
 }
 
 .makeStyles-next-14 > button {
     border-radius: 20px 0 0 20px !important;
+}
+
+
+@media screen and (max-width: 800px){
+    .category-list > ul > li > a > p {
+        font: 300 2vmax "Roboto";
+    }
 }

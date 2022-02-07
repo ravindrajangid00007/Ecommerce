@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
+import ElasticCarousel from 'react-elastic-carousel';
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetails, clearErrors , newReview } from "../../state/action-creators/productAction.js";
+import { getProductDetails, clearErrors, newReview } from "../../state/action-creators/productAction.js";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
@@ -12,6 +12,7 @@ import { addItemToCart } from "../../state/action-creators/cartAction";
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { NEW_REVIEW_RESET } from '../../state/constants/productConstants';
 import {
   Dialog,
   DialogActions,
@@ -31,7 +32,7 @@ function ProductDetails() {
   const { product, loading, error } = useSelector(
     (state) => state.productDetailsReducer
   );
-  const {review , error: reviewError , success } = useSelector((state) => state.newReviewReducer);
+  const { review, error: reviewError, success } = useSelector((state) => state.newReviewReducer);
   const increaseQuantity = () => {
     if (quantity < product.stock) {
       setQuantity(quantity + 1);
@@ -55,9 +56,9 @@ function ProductDetails() {
 
   const reviewSubmitHandler = () => {
     const myForm = new FormData();
-    myForm.set("rating",rating);
+    myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId" , productId);
+    myForm.set("productId", productId);
 
     dispatch(newReview(myForm));
     dispatch(getProductDetails(productId));
@@ -73,11 +74,12 @@ function ProductDetails() {
       alert.error(error);
       dispatch(clearErrors());
     }
-    if(success){
+    if (success) {
       alert.success("Review submitted successfully");
+      dispatch({type: NEW_REVIEW_RESET})
     }
     dispatch(getProductDetails(productId));
-  }, [dispatch, productId, error, alert , reviewError , success]);
+  }, [dispatch, productId, error, alert, reviewError, success]);
 
   const options = {
     edit: false,
@@ -85,10 +87,12 @@ function ProductDetails() {
     activeColor: "tomato",
     value: 5,
     isHalf: true,
-    size: window.innerWidth < 600 ? 20 : 25,
+    size: window.innerWidth < 600 ? 25 : 30,
   };
 
-
+  const breakpoints = [
+    { width: 1, itemsToShow: 1 }
+  ]
   return (
     <>
       {loading ? (
@@ -96,49 +100,53 @@ function ProductDetails() {
       ) : (
         <>
           <div className="productDetails">
-            <div className="carouselBox">
-              <Carousel>
-                {product.images &&
-                  product.images.map((item, i) => (
-                    <img
-                      className="carouselImage"
-                      key={item.url}
-                      src={item.url}
-                      alt={`${i} Slide`}
-                    />
-                  ))}
-              </Carousel>
-            </div>
-            <div className="productDetailBox">
-              <div className="detailsBlock-1">
-                <h2>{product.name}</h2>
-                <p>Product # {product._id}</p>
+            <div className="carrousel-product-container">
+              <div className="carouselBox">
+                <ElasticCarousel breakPoints={breakpoints} className="carousel-container"
+                showArrows={true}
+                >
+                  {product.images &&
+                    product.images.map((item, i) => (
+                      <div key={item.url} className="carouselImage">
+                        <img
+                          src={item.url}
+                          alt={`${i} Slide`}
+                        />
+                      </div>
+                    ))}
+                </ElasticCarousel>
               </div>
-              <div className="detailsBlock-2">
-                <ReactStars {...options} />
-                <span>({product.numOfReviews} Review)</span>
-              </div>
-              <div className="detailsBlock-3">
-                <h1>{`$${product.price}`}</h1>
-                <div className="detailsBlock-3-1">
-                  <div className="detailsBlock-3-1-1">
-                    <button onClick={decreaseQuantity}>-</button>
-                    <input type="number" readOnly={true} value={quantity} />
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>
-                  { product.stock >= 1 && <button disabled={product.stock < 1 ? true: false}  onClick={addItemToCartHandler}>Add to Cart</button> }
+              <div className="productDetailBox">
+                <div className="detailsBlock-1">
+                  <h2>{product.name}</h2>
+                  <p>Product # {product._id}</p>
                 </div>
-                <p>
-                  <b>Status:</b>
-                  <b className={product.stock < 1 ? "redColor" : "greenColor"}>
-                    {product.stock < 1 ? "OutOfStock" : "InStock"}
-                  </b>
-                </p>
+                <div className="detailsBlock-2">
+                  <ReactStars {...options} />
+                  <span>({product.numOfReviews} Review)</span>
+                </div>
+                <div className="detailsBlock-3">
+                  <h1>{`$${product.price}`}</h1>
+                  <div className="detailsBlock-3-1">
+                    <div className="detailsBlock-3-1-1">
+                      <button onClick={decreaseQuantity}>-</button>
+                      <input type="number" readOnly={true} value={quantity} />
+                      <button onClick={increaseQuantity}>+</button>
+                    </div>
+                    {product.stock >= 1 && <button disabled={product.stock < 1 ? true : false} onClick={addItemToCartHandler}>Add to Cart</button>}
+                  </div>
+                  <p>
+                    <b>Status:</b>
+                    <b className={product.stock < 1 ? "redColor" : "greenColor"}>
+                      {product.stock < 1 ? "OutOfStock" : "InStock"}
+                    </b>
+                  </p>
+                </div>
+                <div className="detailsBlock-4">
+                  Description: <p>{product.description}</p>
+                </div>
+                {product.stock >= 1 && <button className="submitReview" onClick={submitReviewToggle}>Submit Review</button>}
               </div>
-              <div className="detailsBlock-4">
-                Description: <p>{product.description}</p>
-              </div>
-              { product.stock >= 1 && <button className="submitReview" onClick={submitReviewToggle}>Submit Review</button>}
             </div>
 
             <div className="reviewBox">

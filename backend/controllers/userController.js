@@ -11,9 +11,13 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
   if (password != confirmPassword) {
-    return next(
-      new ErrorHandler("Password and confirmPassword do not match", 400)
-    );
+    // return next(
+    //   new ErrorHandler("Password and confirmPassword do not match", 400)
+    // );
+    return res.status(401).json({
+      success: false,
+      message: "Password and confirmPassword do not match"
+    })
   }
 
   let user = await User.findOne({ email: email });
@@ -100,7 +104,6 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 
 
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
-  console.log("user email is " , req.body);
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return next(new ErrorHandler("User not found", 404));
@@ -110,8 +113,8 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   const resetToken = await user.getResetPasswordToken();
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/user/reset-password/${resetToken}`;
-  const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you have not request this email then Please Ignore it`;
+  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/reset-password/${resetToken}`;
+  const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n I f you have not request this email then Please Ignore it`;
 
   try {
     await sendEmail({

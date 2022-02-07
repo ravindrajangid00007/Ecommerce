@@ -52,7 +52,7 @@ const ProductList = () => {
     }, [dispatch, alert, error, navigate ,deleteError ,isDeleted]);
 
     const columns = [
-        { field: "id", headerName: "Product ID", minWidth: 200},
+        { field: "id", headerName: "Product ID", minWidth: 200 , flex: 1},
 
         {
             field: "name",
@@ -118,7 +118,7 @@ const ProductList = () => {
 
             <div className="dashboardPage">
                 <SideBar />
-                <div className="productListContainer">
+                <div className="dashboardContainer">
                     <h1 id="productListHeading">ALL PRODUCTS</h1>
 
                     <DataGrid

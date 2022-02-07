@@ -55,13 +55,11 @@ const UsersList = () => {
       field: "email",
       headerName: "Email",
       minWidth: 200,
-      flex: 1,
     },
     {
       field: "name",
       headerName: "Name",
       minWidth: 150,
-      flex: 0.5,
     },
 
     {
@@ -69,7 +67,6 @@ const UsersList = () => {
       headerName: "Role",
       type: "number",
       minWidth: 150,
-      flex: 0.3,
       cellClassName: (params) => {
         return params.getValue(params.id, "role") === "admin"
           ? "greenColor"
@@ -79,7 +76,6 @@ const UsersList = () => {
 
     {
       field: "actions",
-      flex: 0.3,
       headerName: "Actions",
       minWidth: 150,
       type: "number",
@@ -123,7 +119,7 @@ const UsersList = () => {
 
       <div className="dashboardPage">
         <SideBar />
-        <div className="productListContainer">
+        <div className="dashboardContainer">
           <h1 id="productListHeading">ALL USERS</h1>
 
           <DataGrid
